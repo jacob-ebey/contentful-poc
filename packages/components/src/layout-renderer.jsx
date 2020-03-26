@@ -11,6 +11,7 @@ LayoutRenderer.fragments = {
   layout: gql`
     fragment LayoutRenderer_layout on Layout {
       layoutComponent
+      config
       components {
         component {
           name

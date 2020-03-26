@@ -1,11 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ContainerReferencePlugin = require("webpack/lib/container/ContainerReferencePlugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 module.exports = {
   entry: "./src/index",
 
   output: {
-    publicPath: "http://localhost:3001/"
+    publicPath: "http://localhost:3002/"
   },
 
   optimization: {
@@ -37,12 +37,14 @@ module.exports = {
   },
 
   plugins: [
-    new ContainerReferencePlugin({
-      remoteType: "var",
-      remotes: {
-        "contentful_components": "contentful_components"
+    new ModuleFederationPlugin({
+      name: "contentful_components",
+      library: { type: "var", name: "contentful_components" },
+      filename: "remoteEntry.js",
+      exposes: {
+        "layout-renderer": "./src/layout-renderer"
       },
-      overrides: ["react"]
+      shared: ["react", "react-dom", "graphql", "graphql-tag"]
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html"

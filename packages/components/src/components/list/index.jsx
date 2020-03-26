@@ -2,7 +2,7 @@ import React from "react";
 import { index } from "../../utils";
 
 export default function List({ items, component, dataMap }) {
-  const Component = React.useMemo(() => React.lazy(() => import(`../${component}`)), [component]);
+  const Component = React.useMemo(() => require(`../${component}`).default, [component]);
 
   return (
     <div>

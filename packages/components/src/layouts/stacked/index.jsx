@@ -3,7 +3,7 @@ import React from "react";
 import { index } from "../../utils";
 
 export default function StackedLayout({ components, config, data }) {
-  const importedComponents = React.useMemo(() => components.map(component => React.lazy(() => import(`../../components/${component.component.name}`))), [components]);
+  const importedComponents = React.useMemo(() => components.map(component => require(`../../components/${component.component.name}`).default), [components]);
 
   const componentProps = React.useMemo(() => components.map(component => component.dataMap.reduce((p, c) => {
     if (c.value) {

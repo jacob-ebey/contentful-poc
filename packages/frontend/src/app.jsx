@@ -46,8 +46,6 @@ export default function App() {
   // }
 
   return (
-    <React.Suspense fallback="Rendering layout...">
-      <LayoutRenderer layout={data.layout /* layoutData.layout */} data={data} />
-    </React.Suspense>
+    <LayoutRenderer layout={data.layout /* layoutData.layout */} data={data} />
   )
 }

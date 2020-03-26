@@ -2,7 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 
 export default function LayoutRenderer({ data, layout }) {
-  const Layout = React.useMemo(() => React.lazy(() => import(`./layouts/${layout.layoutComponent}`)), []);
+  const Layout = React.useMemo(() => require(`./layouts/${layout.layoutComponent}`).default, []);
 
   return <Layout config={layout.config} components={layout.components} data={data} />
 }

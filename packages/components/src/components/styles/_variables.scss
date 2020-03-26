@@ -1,0 +1,19 @@
+@import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
+
+/* Additional colors not present in ecom-pattern-library. */
+/* stylelint-disable-next-line color-no-hex */
+$colorTextGray: #686868;
+
+/* Hub grid measurements. */
+$gridColumnGap: rem(20);
+$gridColumnLeftTablet: rem(325);
+$gridColumnRightTablet: rem(485);
+$gridColumnLeftDesktop: rem(420);
+$gridColumnRightDesktop: rem(630);
+
+/* Story grid measurements. */
+$storyGridColumnLeftTablet: 40%;
+$storyGridColumnRightTablet: 60%;
+
+/* Max view width. */
+$maxViewWidth: rem(1372);

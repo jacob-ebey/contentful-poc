@@ -1,0 +1,73 @@
+@import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
+
+@mixin overflowEllipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin center($maxWidth) {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $maxWidth;
+}
+
+@mixin stackVertical($margin, $marginTablet: $margin) {
+  > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > * + * {
+    margin-top: $margin;
+
+    @include mq($tablet-and-above) {
+      margin-top: $marginTablet;
+    }
+  }
+}
+
+@mixin stackHorizontal($margin, $marginTablet: $margin) {
+  > * {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  > * + * {
+    margin-left: $margin;
+
+    @include mq($tablet-and-above) {
+      margin-left: $marginTablet;
+    }
+  }
+}
+
+@mixin clearStackVertical {
+  > * {
+    margin-top: inherit;
+    margin-bottom: inherit;
+  }
+
+  > * + * {
+    margin-top: inherit;
+
+    @include mq($tablet-and-above) {
+      margin-top: inherit;
+    }
+  }
+}
+
+@mixin clearStackHorizontal {
+  > * {
+    margin-left: inherit;
+    margin-right: inherit;
+  }
+
+  > * + * {
+    margin-left: inherit;
+
+    @include mq($tablet-and-above) {
+      margin-left: inherit;
+    }
+  }
+}

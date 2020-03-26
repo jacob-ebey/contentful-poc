@@ -3,38 +3,8 @@ import PropTypes from "prop-types";
 import ReactMarkdown from "markdown-react-js";
 import cn from "classnames";
 
-// import styles from "./text.module.scss";
-const styles = {};
-
-function marginTopClass(margin) {
-  switch (margin) {
-    case "none":
-      return styles.textMarginTopNone;
-    case "small":
-      return styles.textMarginTopSmall;
-    case "medium":
-      return styles.textMarginTopMedium;
-    case "large":
-      return styles.textMarginTopLarge;
-    default:
-      return "";
-  }
-}
-
-function marginBottomClass(margin) {
-  switch (margin) {
-    case "none":
-      return styles.textMarginBottomNone;
-    case "small":
-      return styles.textMarginBottomSmall;
-    case "medium":
-      return styles.textMarginBottomMedium;
-    case "large":
-      return styles.textMarginBottomLarge;
-    default:
-      return "";
-  }
-}
+import "@lululemon/ecom-pattern-library/lib/styles/base.css";
+import "@lululemon/ecom-pattern-library/lib/styles/fonts.css";
 
 const Text = ({
   className,
@@ -42,17 +12,13 @@ const Text = ({
   markdown,
   component,
   alignment,
-  marginTop,
-  marginBottom,
   size,
   style,
   weight
 }) => {
   const classnames = cn([
+    "lll-base",
     className,
-    styles.text,
-    marginTop && marginTopClass(marginTop),
-    marginBottom && marginBottomClass(marginBottom),
     alignment && `lll-text-${alignment}`,
     style && `lll-text-${style || "primary"}`,
     size && `lll-text-${size || "body-1"}`,
@@ -71,16 +37,12 @@ const Text = ({
   );
 };
 
-const marginType = PropTypes.oneOf(["none", "small", "medium", "large"]);
-
 Text.propTypes = {
   className: PropTypes.string,
   text: PropTypes.string,
   markdown: PropTypes.string,
   component: PropTypes.oneOf(["p", "h1", "h2", "h3", "h4", "h5", "h6"]),
   alignment: PropTypes.oneOf(["left", "center", "right"]),
-  marginTop: marginType,
-  marginBottom: marginType,
   size: PropTypes.oneOf([
     "body-1",
     "body-2",

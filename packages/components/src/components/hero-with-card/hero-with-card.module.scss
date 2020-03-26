@@ -1,0 +1,71 @@
+@import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
+
+.heroWithCard {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+
+  &Vertical {
+    @include mq($tablet-and-above) {
+      flex-direction: column;
+    }
+  }
+
+  &Link {
+    display: flex;
+    text-decoration: none;
+  }
+
+  &Img {
+    height: 100%;
+    width: 100%;
+  }
+
+  &ImgXLarge {
+    min-height: rem(530);
+
+    @include mq($tablet-and-above) {
+      min-height: rem(390);
+    }
+
+    @include mq($desktop-and-above) {
+      min-height: rem(480);
+    }
+  }
+
+  &ImgLarge {
+    width: rem(130);
+    min-height: rem(130);
+
+    @include mq($tablet-and-above) {
+      width: 100%;
+      min-height: rem(220);
+    }
+
+    @include mq($desktop-and-above) {
+      width: 100%;
+      min-height: rem(270);
+    }
+  }
+
+  &ImgMedium {
+    min-height: rem(130);
+    max-width: rem(130);
+
+    @include mq($tablet-and-above) {
+      min-height: rem(205);
+      max-width: none;
+    }
+
+    @include mq($desktop-and-above) {
+      min-height: rem(310);
+      max-width: none;
+    }
+  }
+
+  &ImgSmall {
+    min-height: rem(130);
+    max-width: rem(130);
+  }
+}

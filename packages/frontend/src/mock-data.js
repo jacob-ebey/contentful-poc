@@ -69,12 +69,42 @@ query DataQuery {
             destination: "dataMap"
           }
         ]
+      },
+      {
+        component: {
+          name: "hero-with-card"
+        },
+        dataMap: [
+          {
+            value: JSON.stringify("XLarge"),
+            destination: "size"
+          },
+          {
+            source: "story.webRoute",
+            destination: "webRoute"
+          },
+          {
+            source: "story.title",
+            destination: "title"
+          },
+          {
+            source: "story.images[0]",
+            destination: "image"
+          }
+        ]
       }
     ]
   },
   story: {
     title: "Running with Person Name",
     overview: "I'm a quick overview...",
+    webRoute: "#some-route-would-go-here",
+    images: [
+      {
+        url: "http://placekitten.com/g/900/600",
+        description: "A cute kitten"
+      }
+    ],
     body: `
 # I'm the story body
 

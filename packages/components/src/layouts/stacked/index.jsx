@@ -1,22 +1,18 @@
 import React from "react";
 
-import { index } from "../../utils";
-
 export default function StackedLayout({ components, config, data }) {
   const importedComponents = React.useMemo(() => components.map(component => require(`../../components/${component.component.name}`).default), [components]);
 
   const componentProps = React.useMemo(() => components.map(component => component.dataMap.reduce((p, c) => {
     if (c.value) {
-      return {
-        ...p,
-        [c.destination]: JSON.parse(c.value)
-      };
+      return _.set(p, c.destination, JSON.parse(c.value));
+    }
+
+    if (!c.source || c.source === ".") {
+      return _.set(p, c.destination, data);
     }
     
-    return {
-      ...p,
-      [c.destination]: index(data, c.source)
-    };
+    return _.set(p, c.destination, _.get(data, c.source));
   }, {})), [components, data]);
 
   return (

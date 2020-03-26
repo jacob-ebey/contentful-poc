@@ -1,0 +1,122 @@
+@import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+$accentWidthMobile: rem(30);
+$accentWidthTablet: $gridGutterMedium;
+$accentWidthDesktop: $gridGutterLarge;
+$baseFontSize: rem(14);
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: $colorWhite;
+  padding: $gridGutterLarge $accentWidthMobile;
+  flex: 1;
+  min-width: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &XLarge {
+    box-shadow: $accentWidthMobile * -1 rem(12) 0 0 $colorRedLululemon;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - #{$accentWidthMobile});
+    height: rem(100);
+
+    @include mq($tablet-and-above) {
+      box-shadow: $accentWidthTablet * -1 rem(12) 0 0 $colorRedLululemon;
+      width: calc(100% - #{$accentWidthTablet});
+      padding: $gridGutterLarge $accentWidthTablet;
+    }
+
+    @include mq($desktop-and-above) {
+      box-shadow: $accentWidthDesktop * -1 rem(12) 0 0 $colorRedLululemon;
+      width: calc(100% - #{$accentWidthDesktop});
+      padding: $accentWidthDesktop;
+    }
+  }
+
+  &Large {
+    padding: $gridGutterLarge $accentWidthMobile / 2;
+
+    @include mq($tablet-and-above) {
+      box-shadow: $accentWidthTablet * -1 rem(12) 0 0 $colorGray90Dark;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: calc(100% - #{$accentWidthTablet});
+      padding: $gridGutterLarge $accentWidthTablet;
+      height: rem(88);
+    }
+  }
+
+  &Medium {
+    padding: $gridGutterLarge $accentWidthMobile / 2;
+
+    @include mq($tablet-and-above) {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      padding: $gridGutterLarge $accentWidthTablet;
+      height: rem(88);
+    }
+  }
+
+  &Small {
+    padding: $gridGutterLarge $accentWidthMobile / 2;
+  }
+
+  &TitleContainer {
+    display: flex;
+    justify-content: space-between;
+    font-size: $baseFontSize * 2;
+
+    &Accented {
+      &::after {
+        content: '';
+        display: inline-block;
+        height: rem(16);
+        width: rem(16);
+        background-image: url('../../assets/icons/arrowRight.svg');
+      }
+    }
+  }
+
+  &Title {
+    @include overflowEllipsis;
+
+    max-width: calc(100% - #{rem(16)});
+    margin: 0;
+    font-size: $baseFontSize * 2;
+    color: $colorJetBlack;
+  }
+
+  &Tags {
+    @include stackHorizontal(rem(8));
+
+    display: flex;
+    align-items: center;
+  }
+
+  &Tag {
+    font-size: rem(14);
+    text-transform: uppercase;
+    color: $colorTextGray;
+
+    &:first-child,
+    &:last-child {
+      @include overflowEllipsis;
+    }
+
+    &Main {
+      color: $colorRedLululemon;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,24 +1,23 @@
 import React from "react";
-import { index } from "../../utils";
+import _ from "lodash";
 
 export default function List({ items, component, dataMap }) {
   const Component = React.useMemo(() => require(`../${component}`).default, [component]);
+  console.log(items);
 
   return (
     <div>
       {items && items.map(item => {
         const componentProps = dataMap.reduce((p, c) => {
           if (c.value) {
-            return {
-              ...p,
-              [c.destination]: JSON.parse(c.value)
-            };
+            return _.set(p, c.destination, JSON.parse(c.value));
           }
           
-          return {
-            ...p,
-            [c.destination]: index(item, c.source)
-          };
+          if (!c.source || c.source === ".") {
+            return _.set(p, c.destination, item);
+          }
+
+          return _.set(p, c.destination, _.get(item, c.source));
         }, {});
 
         return <Component {...componentProps} />;

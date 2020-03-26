@@ -2,6 +2,20 @@
 <html lang="en">
   <head>
     <script src="http://localhost:3002/remoteEntry.js"></script>
+    <style>
+      .my-masonry-grid {
+        display: -webkit-box; /* Not needed if autoprefixing */
+        display: -ms-flexbox; /* Not needed if autoprefixing */
+        display: flex;
+        margin-left: -30px; /* gutter size offset */
+        width: auto;
+      }
+
+      .my-masonry-grid_column {
+        padding-left: 30px; /* gutter size */
+        background-clip: padding-box;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

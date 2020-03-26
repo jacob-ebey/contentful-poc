@@ -8,7 +8,12 @@ import App from "./app";
 const client = createClient({
   cache: createCache(),
   fetch,
-  url: "https://mock-contentful-api.com"
+  url: process.env.CONTENTFUL_URL,
+  request: {
+    headers: {
+      Authorization: `Bearer ${process.env.CONTENTFUL_KEY}`
+    }
+  }
 });
 
 ReactDOM.render(

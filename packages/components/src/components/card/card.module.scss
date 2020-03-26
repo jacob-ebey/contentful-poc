@@ -15,6 +15,7 @@ $baseFontSize: rem(14);
   padding: $gridGutterLarge $accentWidthMobile;
   flex: 1;
   min-width: 0;
+  z-index: 2;
 
   &:hover {
     cursor: pointer;
@@ -22,7 +23,6 @@ $baseFontSize: rem(14);
 
   &XLarge {
     box-shadow: $accentWidthMobile * -1 rem(12) 0 0 $colorRedLululemon;
-    position: absolute;
     bottom: 0;
     right: 0;
     width: calc(100% - #{$accentWidthMobile});
@@ -46,7 +46,6 @@ $baseFontSize: rem(14);
 
     @include mq($tablet-and-above) {
       box-shadow: $accentWidthTablet * -1 rem(12) 0 0 $colorGray90Dark;
-      position: absolute;
       bottom: 0;
       right: 0;
       width: calc(100% - #{$accentWidthTablet});
@@ -59,7 +58,6 @@ $baseFontSize: rem(14);
     padding: $gridGutterLarge $accentWidthMobile / 2;
 
     @include mq($tablet-and-above) {
-      position: absolute;
       bottom: 0;
       right: 0;
       width: 100%;

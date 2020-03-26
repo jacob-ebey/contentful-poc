@@ -1,3 +1,4 @@
+const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
@@ -48,6 +49,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html"
+    }),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.CONTENTFUL_URL': JSON.stringify(process.env.CONTENTFUL_URL),
+      'process.env.CONTENTFUL_KEY': JSON.stringify(process.env.CONTENTFUL_KEY)
     })
   ]
 };

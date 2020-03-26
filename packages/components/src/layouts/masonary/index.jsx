@@ -1,7 +1,11 @@
 import React from "react";
 import _ from "lodash";
 
-export default function StackedLayout({ components, config, data }) {
+import Masonry from 'react-masonry-css';
+
+import styles from "./masonary.module.css";
+
+export default function MasonryLayout({ components, config, data }) {
   const importedComponents = React.useMemo(() => components.map(component => require(`../../components/${component.component.name}`).default), [components]);
 
   const componentProps = React.useMemo(() => components.map(component => component.dataMap.reduce((p, c) => {
@@ -17,10 +21,19 @@ export default function StackedLayout({ components, config, data }) {
   }, {})), [components, data]);
 
   return (
-    <div>
+    <Masonry
+      breakpointCols={{
+        default: 4,
+        1100: 3,
+        700: 2,
+        500: 1
+      }}
+      className="my-masonry-grid"
+      columnClassName="my-masonry-grid_column"
+    >
       {importedComponents.map((Component, i) => (
         <Component {...componentProps[i]} />
       ))}
-    </div>
+    </Masonry>
   )
 }

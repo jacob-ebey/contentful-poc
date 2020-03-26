@@ -1,7 +1,18 @@
 import React from "react";
 import _ from "lodash";
 
-export default function StackedLayout({ components, config, data }) {
+import styles from "./twelve-column-grid.module.scss";
+
+function applyGridClassnames({ colSpan, col, rowSpan, row }) {
+  return [
+    colSpan && `col-${colSpan}`,
+    col && `col-start-${col}`,
+    rowSpan && `row-${rowSpan}`,
+    row && `row-start-${row}`
+  ];
+}
+
+export default function GridLayout({ components, config, data }) {
   const importedComponents = React.useMemo(() => components.map(component => require(`../../components/${component.component.name}`).default), [components]);
 
   const componentProps = React.useMemo(() => components.map(component => component.dataMap.reduce((p, c) => {
@@ -17,9 +28,9 @@ export default function StackedLayout({ components, config, data }) {
   }, {})), [components, data]);
 
   return (
-    <div>
+    <div className={styles.twelveColumnGrid}>
       {importedComponents.map((Component, i) => (
-        <Component {...componentProps[i]} />
+        <Component {...componentProps[i]} className={applyGridClassnames((config.positions && config.positions[i]) || {})} />
       ))}
     </div>
   )

@@ -1,0 +1,44 @@
+@import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
+@import '../../components/styles/mixins.scss';
+
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
+:global {
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      grid-column-end: span $i;
+    }
+
+    .col-start-#{$i} {
+      grid-column-start: $i;
+    }
+
+    .row-#{$i} {
+      grid-row-end: span $i;
+    }
+
+    .row-start-#{$i} {
+      grid-row-start: $i;
+    }
+  }
+}
+
+.twelveColumnGrid {
+  @include stackVertical($gridGutterSmall);
+
+  display: flex;
+  flex-direction: column;
+  padding: 0 $gridGutterSmall;
+
+  @include mq($tablet-and-above) {
+    @include clearStackVertical;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: $gridGutterMedium;
+    padding: 0 $gridGutterLarge;
+  }
+
+  @include mq($desktop-and-above) {
+    grid-column-gap: $gridGutterLarge;
+  }
+}

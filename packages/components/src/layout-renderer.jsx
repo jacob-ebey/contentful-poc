@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 export default function LayoutRenderer({ data, layout }) {
   const Layout = React.useMemo(() => require(`./layouts/${layout.layoutComponent}`).default, []);
 
-  return <Layout config={layout.config} components={layout.components} data={data} />
+  return <Layout config={layout.config && JSON.parse(layout.config)} components={layout.components} data={data} />
 }
 
 LayoutRenderer.fragments = {

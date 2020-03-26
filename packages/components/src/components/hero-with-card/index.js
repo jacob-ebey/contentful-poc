@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import CoverImage from "../cover-image/cover-image";
-import { CardSmall, CardMedium, CardLarge, CardXLarge } from "../card/card";
+import CoverImage from "../cover-image";
+import { CardSmall, CardMedium, CardLarge, CardXLarge } from "../card";
 
 import styles from "./hero-with-card.module.scss";
 
@@ -68,6 +68,7 @@ const HeroWithCard = ({
           title={title}
           mainTag={mainTag}
           secondaryTag={secondaryTag}
+          className={styles.heroCard}
         />
       </div>
     </a>

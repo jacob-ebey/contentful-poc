@@ -1,12 +1,24 @@
 import React from "react";
 import _ from "lodash";
 
+import Masonry from 'react-masonry-css';
+
+import styles from "../../layouts/masonary/masonary.module.css"
+
 export default function List({ items, component, dataMap }) {
   const Component = React.useMemo(() => require(`../${component}`).default, [component]);
-  console.log(items);
-
+  
   return (
-    <div>
+    <Masonry
+      breakpointCols={{
+        default: 4,
+        1100: 3,
+        700: 2,
+        500: 1
+      }}
+      className="my-masonry-grid"
+      columnClassName="my-masonry-grid_column"
+    >
       {items && items.map(item => {
         const componentProps = dataMap.reduce((p, c) => {
           if (c.value) {
@@ -22,6 +34,6 @@ export default function List({ items, component, dataMap }) {
 
         return <Component {...componentProps} />;
       })}
-    </div>
+    </Masonry>
   );
 }

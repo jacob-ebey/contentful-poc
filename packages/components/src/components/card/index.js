@@ -14,7 +14,7 @@ export const Card = ({ title, mainTag, secondaryTag, className }) => {
   const hasTags = mainTag || secondaryTag;
 
   return (
-    <div className={cn([styles.card, className])}>
+    <div className={cn([styles.card, styles.cardXLarge, className])}>
       {hasTags ? (
         <div className={styles.cardTags}>
           <span className={cn([styles.cardTag, styles.cardTagMain])}>
@@ -40,31 +40,33 @@ export const Card = ({ title, mainTag, secondaryTag, className }) => {
   );
 };
 
+export default Card;
+
 Card.propTypes = {
   ...SharedPropTypes,
   className: PropTypes.string.isRequired
 };
 
 export const CardSmall = props => {
-  return <Card {...props} className={styles.cardSmall} />;
+  return <Card {...props} className={cn([styles.cardSmall, props.className])} />;
 };
 
 CardSmall.propTypes = SharedPropTypes;
 
 export const CardMedium = props => {
-  return <Card {...props} className={styles.cardMedium} />;
+  return <Card {...props} className={cn([styles.cardMedium, props.className])} />;
 };
 
 CardMedium.propTypes = SharedPropTypes;
 
 export const CardLarge = props => {
-  return <Card {...props} className={styles.cardLarge} />;
+  return <Card {...props} className={cn([styles.cardLarge, props.className])} />;
 };
 
 CardLarge.propTypes = SharedPropTypes;
 
 export const CardXLarge = props => {
-  return <Card {...props} className={styles.cardXLarge} />;
+  return <Card {...props} className={cn([styles.cardXLarge, props.className])} />;
 };
 
 CardXLarge.propTypes = SharedPropTypes;

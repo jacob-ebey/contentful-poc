@@ -1,5 +1,9 @@
 @import '~@lululemon/ecom-pattern-library/lib/styles/includes.scss';
 
+.heroCard {
+  position: absolute;
+}
+
 .heroWithCard {
   display: flex;
   flex: 1;
@@ -50,22 +54,10 @@
   }
 
   &ImgMedium {
-    min-height: rem(130);
-    max-width: rem(130);
-
-    @include mq($tablet-and-above) {
-      min-height: rem(205);
-      max-width: none;
-    }
-
-    @include mq($desktop-and-above) {
-      min-height: rem(310);
-      max-width: none;
-    }
+    
   }
 
   &ImgSmall {
     min-height: rem(130);
-    max-width: rem(130);
   }
 }

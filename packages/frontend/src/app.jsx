@@ -1,12 +1,11 @@
 import React from "react";
-// import { parse } from "graphql/language/parser";
-// import gql from "graphql-tag";
-// import { useQuery } from "@micro-graphql/hooks";
-// import { useQuery } from "@micro-graphql/hooks";
+import { parse } from "graphql/language/parser";
+import gql from "graphql-tag";
+import { useQuery } from "@micro-graphql/hooks";
 
 import LayoutRenderer from "contentful_components/layout-renderer";
 
-import data from "./mock-data";
+import layoutData from "./mock-data";
 
 // const QUERY = gql`
 //   query GetLayoutQuery($id: ID!) {
@@ -20,32 +19,36 @@ import data from "./mock-data";
 export default function App() {
   // const { data: layoutData, errors: layoutErrors, loading: layoutLoading } = useQuery(QUERY, { id: "story-page-layout" });
 
-  // const dataQuery = React.useMemo(() => layoutData && parse(layoutData.layout.dataQuery), [layoutData]);
-  // const { data, errors, loading } = useQuery(dataQuery, undefined, { skip: !dataQuery });
+  const dataQuery = React.useMemo(() => layoutData && parse(layoutData.page.dataQuery), [layoutData]);
+  const { data, errors, loading } = useQuery(dataQuery, undefined, { skip: !dataQuery });
 
-  // if (layoutLoading || loading) {
-  //   return <h1>Loading...</h1>;
-  // }
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
 
-  // if (layoutErrors || errors) {
-  //   return (
-  //     <pre>
-  //       Errors loading data
+  if (errors) {
+    return (
+      <pre>
+        Errors loading data
 
-  //       <code>
-  //         {JSON.stringify(layoutErrors || errors, null, 2)}
-  //       </code>
-  //     </pre>
-  //   )
-  // }
+        <code>
+          {JSON.stringify(errors, null, 2)}
+        </code>
+      </pre>
+    )
+  }
 
-  // if (!layoutData || !data) {
-  //   return (
-  //     <pre><code>No data was found for the page</code></pre>
-  //   )
-  // }
+  if (!layoutData || !data) {
+    return (
+      <pre><code>No data was found for the page</code></pre>
+    )
+  }
 
   return (
-    <LayoutRenderer layout={data.layout /* layoutData.layout */} data={data} />
+    <div style={{ background: "#f9f9f9" }}>
+      {layoutData.page.layouts.map(layout => (
+        <LayoutRenderer layout={layout} data={data} />
+      ))}
+    </div>
   )
 }

@@ -1,29 +1,20 @@
 import React from "react";
-import { parse } from "graphql/language/parser";
+// import { parse } from "graphql/language/parser";
 // import gql from "graphql-tag";
 // import { useQuery } from "@micro-graphql/hooks";
 import data from "./mock-data";
 
 import LayoutRenderer from "./components/layout-renderer";
-import { useQuery } from "@micro-graphql/hooks";
+// import { useQuery } from "@micro-graphql/hooks";
 
 // const QUERY = gql`
 //   query GetLayoutQuery($id: ID!) {
 //     layout(id: $id) {
+//       ...LayoutRenderer_layout
 //       dataQuery
-//       layoutComponent
-//       components {
-//         component {
-//           name
-//         }
-//         dataMap {
-//           value
-//           source
-//           destination
-//         }
-//       }
 //     }
 //   }
+//   ${LayoutRenderer.fragments.layout}
 // `;
 
 export default function App() {

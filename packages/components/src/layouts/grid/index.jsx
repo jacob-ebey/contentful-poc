@@ -30,7 +30,7 @@ export default function GridLayout({ components, config, data }) {
   return (
     <div className={styles.twelveColumnGrid}>
       {importedComponents.map((Component, i) => (
-        <Component {...componentProps[i]} className={applyGridClassnames((config.positions && config.positions[i]) || {})} />
+        <Component key={i} {...componentProps[i]} className={applyGridClassnames((config.positions && config.positions[i]) || {})} />
       ))}
     </div>
   )

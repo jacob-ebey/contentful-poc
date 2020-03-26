@@ -19,7 +19,7 @@ export default function List({ items, component, dataMap }) {
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column"
     >
-      {items && items.map(item => {
+      {items && items.map((item, i) => {
         const componentProps = dataMap.reduce((p, c) => {
           if (c.value) {
             return _.set(p, c.destination, JSON.parse(c.value));
@@ -32,7 +32,7 @@ export default function List({ items, component, dataMap }) {
           return _.set(p, c.destination, _.get(item, c.source));
         }, {});
 
-        return <Component {...componentProps} />;
+        return <Component key={i} {...componentProps} />;
       })}
     </Masonry>
   );

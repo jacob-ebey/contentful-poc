@@ -19,7 +19,7 @@ export default function StackedLayout({ components, config, data }) {
   return (
     <div>
       {importedComponents.map((Component, i) => (
-        <Component {...componentProps[i]} />
+        <Component key={i} {...componentProps[i]} />
       ))}
     </div>
   )

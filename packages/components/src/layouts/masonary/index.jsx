@@ -32,7 +32,7 @@ export default function MasonryLayout({ components, config, data }) {
       columnClassName="my-masonry-grid_column"
     >
       {importedComponents.map((Component, i) => (
-        <Component {...componentProps[i]} />
+        <Component key={i} {...componentProps[i]} />
       ))}
     </Masonry>
   )

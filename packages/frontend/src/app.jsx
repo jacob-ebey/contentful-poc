@@ -46,8 +46,8 @@ export default function App() {
 
   return (
     <div style={{ background: "#f9f9f9" }}>
-      {layoutData.page.layouts.map(layout => (
-        <LayoutRenderer layout={layout} data={data} />
+      {layoutData.page.layouts.map((layout, i) => (
+        <LayoutRenderer key={i} layout={layout} data={data} />
       ))}
     </div>
   )

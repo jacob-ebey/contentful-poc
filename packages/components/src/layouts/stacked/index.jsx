@@ -1,6 +1,6 @@
 import React from "react";
 
-import { index } from "../../../utils";
+import { index } from "../../utils";
 
 export default function StackedLayout({ components, config, data }) {
   const importedComponents = React.useMemo(() => components.map(component => React.lazy(() => import(`../../components/${component.component.name}`))), [components]);

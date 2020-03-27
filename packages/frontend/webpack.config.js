@@ -2,15 +2,21 @@ const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
+const mode = process.env.NODE_ENV || "production";
+
 module.exports = {
   entry: "./src/index",
 
   output: {
     publicPath: "http://localhost:3001/"
   },
+  
+  mode,
+
+  devtool: "source-map",
 
   optimization: {
-    minimize: false
+    minimize: mode === "production"
   },
 
   resolve: {

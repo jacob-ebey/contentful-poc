@@ -7,16 +7,21 @@
   "scripts": {
     "start": "serve dist -p 3002",
     "build": "webpack --mode production",
-    "dev": "concurrently \"webpack --watch\" \"serve dist -p 3002\""
+    "dev": "dotenv -- concurrently \"webpack --watch\" \"serve dist -p 3002\""
   },
   "dependencies": {
     "@lululemon/ecom-pattern-library": "^0.8.23",
+    "@micro-graphql/core": "^1.1.1",
+    "@micro-graphql/hooks": "^1.1.2",
     "classnames": "^2.2.6",
+    "deepmerge": "^4.2.2",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
+    "graphql-query-builder": "^1.0.7",
     "lodash": "^4.17.15",
     "markdown-react-js": "^1.0.2",
     "react": "^16.13.1",
+    "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-masonry-css": "^1.0.14"
   },
@@ -26,6 +31,7 @@
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
     "concurrently": "^5.1.0",
+    "dotenv-cli": "^3.1.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "git://github.com/ScriptedAlchemy/html-webpack-plugin#master",
     "node-sass": "^4.13.1",

@@ -1,4 +1,6 @@
+.DS_STORE
 dist/
 node_modules/
 
 .env
+apollo.config.js

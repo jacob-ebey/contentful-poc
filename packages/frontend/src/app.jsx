@@ -5,34 +5,55 @@ import { useQuery } from "@micro-graphql/hooks";
 
 import LayoutRenderer from "contentful_components/layout-renderer";
 
-import layoutData from "./mock-data";
+const QUERY = gql`
+  query StoriesHubQuery($id: String!) {
+    page: jacobPlaygroundStoriesHub(id: $id) {
+      dataQuery
+      layouts: layoutsCollection(limit: 10) {
+        items {
+          ...LayoutRenderer_layout
+        }
+      }
+    }
+  }
+  ${LayoutRenderer.fragments.layout}
+`;
 
-// const QUERY = gql`
-//   query GetLayoutQuery($id: ID!) {
-//     layout(id: $id) {
-//       ...LayoutRenderer_layout
-//     }
-//   }
-//   ${LayoutRenderer.fragments.layout}
-// `;
+const pageVariables = {
+  id: "368HmB6SjWuOz7g9PV4ELp"
+}
+
+const PLACEHOLDER_QUERY = gql`
+  query Placeholder {
+    __schema {
+      queryType {
+        name
+      }
+    }
+  }
+`;
 
 export default function App() {
-  // const { data: layoutData, errors: layoutErrors, loading: layoutLoading } = useQuery(QUERY, { id: "story-page-layout" });
+  const { data: layoutData, errors: layoutErrors, loading: layoutLoading } = useQuery(
+    QUERY,
+    pageVariables
+  );
 
+  
   const dataQuery = React.useMemo(() => layoutData && parse(layoutData.page.dataQuery), [layoutData]);
-  const { data, errors, loading } = useQuery(dataQuery, undefined, { skip: !dataQuery });
+  const { data, errors, loading } = useQuery(dataQuery || PLACEHOLDER_QUERY, undefined, { skip: !dataQuery });
 
-  if (loading) {
+  if (loading || layoutLoading) {
     return <h1>Loading...</h1>;
   }
 
-  if (errors) {
+  if (errors || layoutErrors) {
     return (
       <pre>
         Errors loading data
 
         <code>
-          {JSON.stringify(errors, null, 2)}
+          {JSON.stringify(errors || layoutErrors, null, 2)}
         </code>
       </pre>
     )
@@ -46,7 +67,7 @@ export default function App() {
 
   return (
     <div style={{ background: "#f9f9f9" }}>
-      {layoutData.page.layouts.map((layout, i) => (
+      {layoutData.page.layouts.items.map((layout, i) => (
         <LayoutRenderer key={i} layout={layout} data={data} />
       ))}
     </div>

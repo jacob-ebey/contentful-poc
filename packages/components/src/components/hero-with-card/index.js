@@ -15,8 +15,7 @@ const SharedPropTypes = {
   }).isRequired,
   webRoute: PropTypes.string.isRequired,
   mainTag: PropTypes.string,
-  secondaryTag: PropTypes.string,
-  colSpan: PropTypes.number
+  secondaryTag: PropTypes.string
 };
 
 const SizeToCard = new Map([

@@ -8,7 +8,7 @@ import styles from "./masonary.module.css";
 export default function MasonryLayout({ components, config, data }) {
   const importedComponents = React.useMemo(() => components.map(component => require(`../../components/${component.component.name}`).default), [components]);
 
-  const componentProps = React.useMemo(() => components.map(component => component.dataMap.reduce((p, c) => {
+  const componentProps = React.useMemo(() => components.map(component => component.dataMap.items.reduce((p, c) => {
     if (c.value) {
       return _.set(p, c.destination, JSON.parse(c.value));
     }

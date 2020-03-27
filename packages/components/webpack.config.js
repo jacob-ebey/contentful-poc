@@ -1,5 +1,8 @@
+const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+
+const mode = process.env.NODE_ENV || "production";
 
 module.exports = {
   entry: "./src/index",
@@ -8,8 +11,12 @@ module.exports = {
     publicPath: "http://localhost:3002/"
   },
 
+  mode,
+
+  devtool: "source-map",
+
   optimization: {
-    minimize: false
+    minimize: mode === "production"
   },
 
   resolve: {
@@ -74,6 +81,11 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "./public/index.html"
+    }),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.CONTENTFUL_URL': JSON.stringify(process.env.CONTENTFUL_URL),
+      'process.env.CONTENTFUL_KEY': JSON.stringify(process.env.CONTENTFUL_KEY)
     })
   ]
 };

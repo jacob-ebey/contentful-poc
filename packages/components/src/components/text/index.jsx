@@ -27,8 +27,6 @@ const Text = ({
 
   const Component = component || (markdown ? "div" : "p");
 
-  console.log(markdown);
-
   return (
     <Component className={classnames}>
       {text}

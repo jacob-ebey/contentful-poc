@@ -18,7 +18,7 @@
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "graphql-query-builder": "^1.0.7",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "markdown-react-js": "^1.0.2",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
